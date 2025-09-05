@@ -4,6 +4,14 @@ on:
     types: 
       - opened
     workflow_dispatch:
+    push: 
+      branches:
+        - main
+        - 'dev-*' # includes dev-new, dev-this-is-new, etc. but not "developer1"
+        - /feat/**' # includes feat/new, feat/new/button, etc.
+    paths-ignore:
+      - '.github/workflows/**' # this workflow will not run for changes in the workflows directory
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest
